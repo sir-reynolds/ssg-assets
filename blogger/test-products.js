@@ -1,6 +1,16 @@
 /** random number **/
 function randNum(max){x= Math.random().toString();x=x.substring(19 - max, 19);return x;};
 
+/** canonical **/
+/***
+(function(){
+const 	canonical=document.createElement('link');
+	canonical.setAttribute('rel', 'canonical');
+	canonical.setAttribute('href', window.location.href.replace("&m=1","").replace("?m=1","")); 
+	( document.head || document.getElementsByTagName('head')[0] ).appendChild(canonical);
+})();
+***/
+
 /** schema jsonld **/
 (function(){
   
