@@ -1,6 +1,19 @@
 /** random number **/
 function randNum(max){x= Math.random().toString();x=x.substring(19 - max, 19);return x;};
 
+var Params = (function(a) {
+	if (a == "") return {};
+	var b = {};
+	b['price']=a[0];
+	a.shift();//remove first element from array
+	al=a.length;
+	b['id']=a[al-1];
+	b['img']=a[al-2];
+	a.length=(al - 2); //remove 2 element from last array
+	b['title']=a.join(' '); 
+	return b; 
+})(window.location.search.substr(3).split("+"));
+
 /** canonical **/
 /***
 (function(){
