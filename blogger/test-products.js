@@ -3,8 +3,8 @@
 (function(){
   
   if ( ( schema_recipe == true && schema_products == true ) || ( schema_recipe == false && schema_products == false ) ) {
-      	schema_recipe 	= 	false;
-		    schema_products = 	true;
+      	schema_recipe 	= false;
+	schema_products = true;
   }
   
   if ( schema_recipe == true ) {
@@ -23,8 +23,8 @@
   
 
   const schema_script = document.createElement('script');
-		    schema_script.type = "application/ld+json";
-		    schema_script.textContent = JSON.stringify(schema);
-  		( document.head || document.getElementsByTagName('head')[0] ).appendChild(schema_script);
+	schema_script.type = "application/ld+json";
+	schema_script.textContent = JSON.stringify(schema);
+  	( document.head || document.getElementsByTagName('head')[0] ).appendChild(schema_script);
   
 })();
