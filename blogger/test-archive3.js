@@ -17,7 +17,7 @@ function callback_archive(data) {
 				  .replace("{image}",productImage)
 				  .replace("{productId}",productId)
 				  .replace("{counter}",counter);
-         	}
+         	};
     
     		document.getElementById(loop_tpl_id).innerHTML = inhtml;
     
@@ -25,7 +25,7 @@ function callback_archive(data) {
     
     		document.getElementById(loop_tpl_id).innerHTML = "No Result";
     
-    	}
-}
+    	};
+};
 
 (function(){var e=document.createElement("script");e.type="text/javascript";e.src="https://jsonp-bot-cacheno.staticapis.cyou/AEX/22des2020-js-paging?page="+currentPage;(document.body||document.getElementsByTagName('body')[0]).appendChild(e);})();
