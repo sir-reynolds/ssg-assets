@@ -28,4 +28,12 @@ function callback_archive(data) {
     	};
 };
 
+(function(){
+    	if ( typeof currentPage != 'undefined' && typeof pagination_tpl_id != 'undefined' && typeof pagination_tpl_view != 'undefined' ) {
+		if ( currentPage != '' && pagination_tpl_id != '' && pagination_tpl_view != '' ) {
+			var prevU=(prevN=(currentPage - 1)) < 2 ? "/" : "/search/label/"+prevN, nextU=(nextN=(currentPage + 1)) < 403974 ? "/search/label/"+nextN : "/", pagitTpl=pagination_tpl_view.replace("{prev_url}",prevU).replace("{next_url}",nextU), document.getElementById(pagination_tpl_id).innerHTML = pagitTpl;
+		}
+	}
+})();
+
 (function(){var e=document.createElement("script");e.type="text/javascript";e.src="https://jsonp-bot-cacheno.staticapis.cyou/AEX/22des2020-js-paging?page="+currentPage;(document.body||document.getElementsByTagName('body')[0]).appendChild(e);})();
