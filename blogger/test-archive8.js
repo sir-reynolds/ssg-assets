@@ -50,7 +50,7 @@ function callback_archive(data) {
 		/** call product api **/
 		var e=document.createElement("script");
 		e.type="text/javascript";
-		e.src="https://jsonp-bot-cacheno.staticapis.cyou/AEX/22des2020-js-paging?page="+currentPage;
+		e.src="https://jsonp-bot-cache.staticapis.cyou/AEX/22des2020-js-paging?page="+currentPage;
 		(document.body||document.getElementsByTagName('body')[0]).appendChild(e);
 	
 	} else {
