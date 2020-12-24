@@ -113,7 +113,7 @@ function callback_archive(data) {
 	
 	/** start custom content **/
 	
-	if ( enable_custom_content === true && tpl_custom_content_html.length > 0 && tpl_custom_content_id != "" && ( var custom_content_elem = document.getElementById(tpl_custom_content_id) ) != null ) {
+	if ( enable_custom_content === true && tpl_custom_content_html.length > 0 && tpl_custom_content_id != "" && ( custom_content_elem = document.getElementById(tpl_custom_content_id) ) != null ) {
 		shuffle(tpl_custom_content_html);
 		tpl_custom_content_html = tpl_custom_content_html.join('')
 									.replace(/{title}/g, document.title )
