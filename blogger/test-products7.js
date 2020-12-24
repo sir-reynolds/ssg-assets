@@ -196,7 +196,9 @@ function callback_archive(data) {
 						"@type": "Offer",
 						"url": currentUrl,
 						"availability": "https://schema.org/InStock",
+						"itemCondition": "http://schema.org/NewCondition",
 						"price": Params['price'],
+						"priceValidUntil": "2098-12-31",
 						"priceCurrency": "USD"
 					}, 
 					"brand": 
