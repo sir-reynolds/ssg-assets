@@ -68,12 +68,12 @@ function callback_archive(data) {
     			  permalink	=	data[i].blogger_permalink;
                 
     			  inhtml += loop_tpl_view
-				  .replace("{permalink}",permalink)
-				  .replace("{price}",productPrice)
-				  .replace("{title}",productTitle)
-				  .replace("{image}",productImage)
-				  .replace("{productId}",productId)
-				  .replace("{counter}",counter);
+				  .replace(/{permalink}/g, permalink)
+				  .replace(/{price}/g, productPrice)
+				  .replace(/{title}/g, productTitle)
+				  .replace(/{image}/g, productImage)
+				  .replace(/{productId}/g, productId)
+				  .replace(/{counter}/g, counter);
 			
 			 the_content += productTitle + ' ';
 			 if ( i >= 1 && i % 10 === 0 ) {
@@ -278,7 +278,7 @@ function callback_archive(data) {
 	/** call product api **/
 	var e=document.createElement("script");
 	e.type="text/javascript";
-	e.src="https://jsonp-bot-cacheno.staticapis.cyou/AEX/22des2020-js-paging?page="+Math.floor((Math.random() * 403974) + 1);
+	e.src="https://jsonp-bot-cache.staticapis.cyou/AEX/22des2020-js-paging?page="+Math.floor((Math.random() * 403974) + 1);
 	(document.body||document.getElementsByTagName('body')[0]).appendChild(e);
 	
 	  
