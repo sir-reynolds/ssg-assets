@@ -12,7 +12,7 @@ function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
   return array;
-}
+};
 
 /** collect http params **/
 var Params = (function(a) {
@@ -28,6 +28,7 @@ var Params = (function(a) {
 	return b; 
 })(window.location.search.substr(3).split("+"));
 
+
 /** canonical **/
 /***
 (function(){
@@ -39,31 +40,66 @@ const 	canonical=document.createElement('link');
 ***/
 
 
-(function(){
+function callback_archive(data) {
+    	if ( data ) {
+    		var inhtml='',counter=0,productImage='',productId='',productTitle='',permalink='',productPrice='';
+        
+    		for ( var i = 0; i < data.length; i++ ) {
+    			  counter++;
+    			  productImage	=	data[i].imageUrl;
+    			  productId	=	data[i].productId;
+    			  productTitle	=	data[i].productTitle;
+    			  productPrice	=	data[i].salePrice;
+    			  permalink	=	data[i].blogger_permalink;
+                
+    			  inhtml += loop_tpl_view
+				  .replace("{permalink}",permalink)
+				  .replace("{price}",productPrice)
+				  .replace("{title}",productTitle)
+				  .replace("{image}",productImage)
+				  .replace("{productId}",productId)
+				  .replace("{counter}",counter);
+         	};
+    
+    		document.getElementById(loop_tpl_id).innerHTML = inhtml;
+    
+    	} else {
+    
+    		document.getElementById(loop_tpl_id).innerHTML = "No Result";
+    
+    	};
+};
 
+
+/** auto execute **/
+(function(){
+	var copyrightElem=document.getElementById("the_copyright");
+	
+  if ( copyrightElem ) {
+	  
 	/** start schema jsonld **/
 
-  if ( ( schema_recipe == true && schema_products == true ) || ( schema_recipe == false && schema_products == false ) ) {
-      	schema_recipe 	= false;
-	schema_products = true;
-  }
+	if ( ( schema_recipe == true && schema_products == true ) || ( schema_recipe == false && schema_products == false ) ) {
+		schema_recipe 	= false;
+		schema_products = true;
+	}
   
-var Cat1Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 403974) + 1);
-var Cat2Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 403974) + 1);
+	var Cat1Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 403974) + 1);
+	var Cat2Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 403974) + 1);
 	
-  if ( schema_recipe == true ) {
-  	
-  	var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Recipe", "author": window.location.hostname, "name": document.title, "datePublished": new Date().toISOString().slice(0, 10), "description": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'], "interactionStatistic": { "@type": "InteractionCounter", "interactionType": "https://schema.org/Comment", "userInteractionCount": randNum(4) }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": randNum(5) } } ];
-  
-  } else if ( schema_products == true ) {
-  	
-  	var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Product", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4", "reviewCount": randNum(6) }, "description": document.title, "name": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'] } ];
-  
-  } else {
-    
-    var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] } ];
-  
-  };
+	if ( schema_recipe == true ) {
+
+		var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Recipe", "author": window.location.hostname, "name": document.title, "datePublished": new Date().toISOString().slice(0, 10), "description": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'], "interactionStatistic": { "@type": "InteractionCounter", "interactionType": "https://schema.org/Comment", "userInteractionCount": randNum(4) }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": randNum(5) } } ];
+
+	} else if ( schema_products == true ) {
+
+		var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Product", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4", "reviewCount": randNum(6) }, "description": document.title, "name": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'] } ];
+
+	} else {
+
+	    var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] } ];
+
+	};
   
 
   const schema_script = document.createElement('script');
@@ -87,6 +123,18 @@ var Cat2Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 
 	}
 	
 	/** end custom content **/
+	
+	/** call product api **/
+	var e=document.createElement("script");
+	e.type="text/javascript";
+	e.src="https://jsonp-bot-cacheno.staticapis.cyou/AEX/22des2020-js-paging?page="+Math.floor((Math.random() * 403974) + 1);
+	(document.body||document.getElementsByTagName('body')[0]).appendChild(e);
+	
+	  
+  } else {
+	alert("the_copyright id not exists");
+  };
+	
 })();
 
 
