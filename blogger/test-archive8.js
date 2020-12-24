@@ -11,12 +11,12 @@ function callback_archive(data) {
     			  permalink	=	data[i].blogger_permalink;
                 
     			  inhtml += loop_tpl_view
-				  .replace("{permalink}",permalink)
-				  .replace("{price}",productPrice)
-				  .replace("{title}",productTitle)
-				  .replace("{image}",productImage)
-				  .replace("{productId}",productId)
-				  .replace("{counter}",counter);
+				  .replace(/{permalink}/g, permalink)
+				  .replace(/{price}/g, productPrice)
+				  .replace(/{title}/g, productTitle)
+				  .replace(/{image}/g, productImage)
+				  .replace(/{productId}/g, productId)
+				  .replace(/{counter}/g, counter);
          	};
     
     		document.getElementById(loop_tpl_id).innerHTML = inhtml;
