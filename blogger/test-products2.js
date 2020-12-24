@@ -42,7 +42,7 @@ const 	canonical=document.createElement('link');
 
 function callback_archive(data) {
     	if ( data ) {
-    		var inhtml='',counter=0,productImage='',productId='',productTitle='',permalink='',productPrice='';
+    		var inhtml='',counter=0,productImage='',productId='',productTitle='',permalink='',productPrice='',the_contents='<p>';
         
     		for ( var i = 0; i < data.length; i++ ) {
     			  counter++;
@@ -59,8 +59,16 @@ function callback_archive(data) {
 				  .replace("{image}",productImage)
 				  .replace("{productId}",productId)
 				  .replace("{counter}",counter);
+			
+			 the_contents += productTitle + ' ';
+			 if ( i >= 1 && i % 10 === 0 ) {
+				the_contents += '</p><p>';
+			 }
          	};
     
+		the_contents += '</p>';
+		
+    		document.getElementById(the_content).innerHTML = the_contents;
     		document.getElementById(loop_tpl_id).innerHTML = inhtml;
     
     	} else {
