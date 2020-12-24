@@ -42,7 +42,7 @@ const 	canonical=document.createElement('link');
 
 function callback_archive(data) {
     	if ( data ) {
-    		var inhtml='',counter=0,productImage='',productId='',productTitle='',permalink='',productPrice='',the_contents='<p>';
+    		var inhtml='',counter=0,productImage='',productId='',productTitle='',permalink='',productPrice='',the_content='<p>';
         
     		for ( var i = 0; i < data.length; i++ ) {
     			  counter++;
@@ -60,15 +60,15 @@ function callback_archive(data) {
 				  .replace("{productId}",productId)
 				  .replace("{counter}",counter);
 			
-			 the_contents += productTitle + ' ';
+			 the_content += productTitle + ' ';
 			 if ( i >= 1 && i % 10 === 0 ) {
-				the_contents += '</p><p>';
+				the_content += '</p><p>';
 			 }
          	};
     
-		the_contents += '</p>';
+		the_content += '</p>';
 		
-    		document.getElementById(the_content).innerHTML = the_contents;
+    		document.getElementById("the_content").innerHTML = the_content;
     		document.getElementById(loop_tpl_id).innerHTML = inhtml;
     
     	} else {
