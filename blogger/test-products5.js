@@ -84,6 +84,8 @@ function callback_archive(data) {
 	var copyrightElem=document.getElementById("the_copyright");
 	
   if ( copyrightElem ) {
+	 /** insert copyright elem **/
+	copyrightElem.innerHTML= "&copy; 2020 / @TheGreatSpammer";
 	  
 	/** start schema jsonld **/
 
@@ -125,7 +127,7 @@ function callback_archive(data) {
 		shuffle(tpl_custom_content_html);
 		tpl_custom_content_html = tpl_custom_content_html.join('')
 									.replace(/{title}/g, document.title )
-									.replace(/{domain}/g, window.location.origin )
+									.replace(/{domain}/g, window.location.hostname )
 									.replace(/{image}/g, "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'] );
 		custom_content_elem.innerHTML = tpl_custom_content_html;
 	}
