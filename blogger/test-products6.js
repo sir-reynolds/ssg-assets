@@ -28,6 +28,10 @@ var Params = (function(a) {
 	return b; 
 })(window.location.search.substr(3).split("+"));
 
+/** current url **/
+var currentUrl = (function(e){
+return e.replace("?m=1&","").replace("?m=1","").replace("&m=1&","").replace("&m=1","");
+})(window.location.href);
 
 /** canonical **/
 /***
@@ -99,15 +103,139 @@ function callback_archive(data) {
 	
 	if ( schema_recipe == true ) {
 
-		var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Recipe", "author": window.location.hostname, "name": document.title, "datePublished": new Date().toISOString().slice(0, 10), "description": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'], "interactionStatistic": { "@type": "InteractionCounter", "interactionType": "https://schema.org/Comment", "userInteractionCount": randNum(4) }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": randNum(5) } } ];
+		var schema = [ 
+				{ 
+					"@context": "https://schema.org", 
+					"@type": "BreadcrumbList", 
+					"itemListElement": [ 
+					{ 
+						"@type": "ListItem", 
+						"position": 1, 
+						"item": 
+						{ 
+							"@id": Cat1Uri, 
+							"name": Breadcrumb1 
+						} 
+					}, 
+					{ 
+						"@type": "ListItem", 
+						"position": 2, 
+						"item": 
+						{ 
+							"@id": Cat2Uri, 
+							"name": Breadcrumb2 
+						} 
+					} 
+					] 
+				}, 
+				{ 
+					"@context": "https://schema.org", 
+					"@type": "Recipe", 
+					"author": window.location.hostname, 
+					"name": document.title, 
+					"datePublished": new Date().toISOString().slice(0, 10), 
+					"description": document.title, 
+					"image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'], 
+					"interactionStatistic": 
+					{ 
+						"@type": "InteractionCounter", 
+						"interactionType": "https://schema.org/Comment", 
+						"userInteractionCount": randNum(4) 
+					}, 
+					"aggregateRating": 
+					{ 
+						"@type": "AggregateRating", 
+						"ratingValue": "5", 
+						"ratingCount": randNum(5) 
+					} 
+				} 
+			];
 
 	} else if ( schema_products == true ) {
 
-		var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] }, { "@context": "https://schema.org", "@type": "Product", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4", "reviewCount": randNum(6) }, "description": document.title, "name": document.title, "image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'] } ];
+		var schema = [ 
+				{
+					"@context": "https://schema.org", 
+					"@type": "BreadcrumbList", 
+					"itemListElement": [ 
+					{ 
+						"@type": "ListItem", 
+						"position": 1, 
+						"item": 
+						{ 
+							"@id": Cat1Uri, 
+							"name": Breadcrumb1 
+						} 
+					}, 
+					{ 
+						"@type": "ListItem", 
+						"position": 2, 
+						"item": 
+						{ 
+							"@id": Cat2Uri, 
+							"name": Breadcrumb2 
+						} 
+					} 
+					] 
+				}, 
+				{ 
+					"@context": "https://schema.org", 
+					"@type": "Product", 
+					"aggregateRating": 
+					{ 
+						"@type": "AggregateRating", 
+						"ratingValue": "4", 
+						"reviewCount": randNum(6) 
+					}, 
+					"sku": Params['id'],
+					"description": document.title, 
+					"name": document.title, 
+					"image": "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'],
+					"offers": 
+					{
+						"@type": "Offer",
+						"url": currentUrl,
+						"availability": "https://schema.org/InStock",
+						"price": Params['price'],
+						"priceCurrency": "USD"
+					}, 
+					"brand": 
+					{
+						"@type": "Brand",
+						"name": window.location.hostname
+					}
+				} 
+			];
 
 	} else {
 
-	    var schema = [ { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "item": { "@id": Cat1Uri, "name": Breadcrumb1 } }, { "@type": "ListItem", "position": 2, "item": { "@id": Cat2Uri, "name": Breadcrumb2 } } ] } ];
+	    var schema = [ 
+		    { 
+			    "@context": "https://schema.org", 
+			    "@type": "BreadcrumbList", 
+			    "itemListElement": 
+			    [ 
+				    { 
+					    "@type": "ListItem", 
+					    "position": 1, 
+					    "item":
+					    { 
+						    "@id": Cat1Uri, 
+						    "name": Breadcrumb1 
+					    } 
+				    }, 
+				    { 
+					    "@type": "ListItem", 
+					    "position": 2, 
+					    "item": 
+					    { 
+						    "@id": Cat2Uri, 
+						    "name": Breadcrumb2 
+					    } 
+				    } 
+			    ] 
+		    } 
+	    ];
 
 	};
   
