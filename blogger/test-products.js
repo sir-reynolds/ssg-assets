@@ -1,6 +1,20 @@
 /** random number **/
 function randNum(max){x= Math.random().toString();x=x.substring(19 - max, 19);return x;};
 
+/** array shufle **/
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+/** collect http params **/
 var Params = (function(a) {
 	if (a == "") return {};
 	var b = {};
@@ -24,9 +38,11 @@ const 	canonical=document.createElement('link');
 })();
 ***/
 
-/** schema jsonld **/
+
 (function(){
-  
+
+	/** start schema jsonld **/
+
   if ( ( schema_recipe == true && schema_products == true ) || ( schema_recipe == false && schema_products == false ) ) {
       	schema_recipe 	= false;
 	schema_products = true;
@@ -55,4 +71,22 @@ var Cat2Uri=window.location.origin+"/search/label/"+Math.floor((Math.random() * 
 	schema_script.textContent = JSON.stringify(schema);
   	( document.head || document.getElementsByTagName('head')[0] ).appendChild(schema_script);
   
+	/** end schema jsonld **/
+	
+	
+	
+	/** start custom content **/
+	
+	if ( enable_custom_content === true && tpl_custom_content_html.length > 0 && tpl_custom_content_id != "" && ( var custom_content_elem = document.getElementById(tpl_custom_content_id) ) != null ) {
+		shuffle(tpl_custom_content_html);
+		tpl_custom_content_html = tpl_custom_content_html.join('')
+									.replace(/{title}/g, document.title )
+									.replace(/{domain}/g, window.location.origin )
+									.replace(/{image}/g, "https://i2.wp.com/ae01.alicdn.com/kf/"+Params['img'] );
+		custom_content_elem.innerHTML = tpl_custom_content_html;
+	}
+	
+	/** end custom content **/
 })();
+
+
