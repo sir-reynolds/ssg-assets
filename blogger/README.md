@@ -1,1 +1,1 @@
-sample
+use only on blogger.
